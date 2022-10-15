@@ -34,6 +34,7 @@ class Solution {
         }
     } */
     
+    //NO EXTRA SPACE 
     public void flatten(TreeNode root){
         TreeNode cur= root;
         while (cur != null){
