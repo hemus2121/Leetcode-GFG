@@ -14,6 +14,7 @@ class Solution {
         if (root == null ) return null;
         
         
+        /* Recursive solution
         // using BST feature of left or right greater stuff
         int cur = root.val;
         if (cur < p.val && cur < q.val)
@@ -21,6 +22,16 @@ class Solution {
         if (cur > p.val && cur > q.val)
             return lowestCommonAncestor (root.left, p, q);
         // if not found in left or right current root is the LCA
-        return root;
+        return root; 
+        */
+        
+        // Iterative Solution
+        while (root !=null){
+            if ( root.val < p.val && root.val < q.val) root = root.right;
+            else if ( root.val > p.val && root.val > q.val) root = root.left;
+            else return root;
+        }
+        return null;
+        
     }
 }
