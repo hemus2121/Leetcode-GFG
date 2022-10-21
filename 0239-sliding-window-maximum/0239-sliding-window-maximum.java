@@ -27,7 +27,7 @@ class Solution {
             }
             resList.add(dq.getFirst());
         }
-        return resList.stream().mapToInt(val->val).toArray();
+        return resList.parallelStream().mapToInt(val->val).toArray();
         
     }
 }
