@@ -4,13 +4,7 @@ class Solution {
         Map<Character,Integer> countMap = new HashMap<>();
         //iterate each character
         for (char c: s.toCharArray()){
-            if (countMap.containsKey(c)){
-                int value = countMap.get(c);
-                value++;
-                countMap.put(c, value);
-            }else {
-                countMap.put(c, 1);
-            }
+            countMap.put(c, countMap.getOrDefault(c,0)+1);
         }
         
         for (int i =0;i< s.length();i++){
