@@ -23,13 +23,7 @@ class Solution {
             }
         }
         
-        //iterate over the map the get values
-        List<List<String>> resultList = new ArrayList();
-        for ( Map.Entry<String, List<String>> mapEntry: hm.entrySet()){
-            resultList.add((List<String>) mapEntry.getValue());
-        }
-        //return resultList;
-       
+        //iterate over the map the get values and return array list
         return new ArrayList(hm.values());
         
     }
