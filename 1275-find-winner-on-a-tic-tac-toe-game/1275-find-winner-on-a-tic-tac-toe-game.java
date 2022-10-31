@@ -29,6 +29,8 @@ class Solution {
             //If player 1 has not won change to player B
             player *=-1;
         }
+         // If all moves are completed and there is still no result, we shall check if 
+        // the grid is full or not. If so, the game ends with draw, otherwise pending.
         return moves.length == n*n ? "Draw": "Pending";
         
     }
