@@ -1,7 +1,7 @@
 class Solution {
     public int trap(int[] height) {
         
-        //w ith extrax space
+       /*  //with extrax space
         int n = height.length;
         
         // we need left max and right max till that place
@@ -25,7 +25,28 @@ class Solution {
         for (int i =0;i<n;i++){
             totalWater += Math.min(leftmax[i], rightmax[i])- height[i];
         }
-        return totalWater;
+        return totalWater; */
         
+        // Without using EXTRA SPACE
+        int leftmax =0, rightmax=0, res=0;
+        
+        // maintaiing 2 pointers
+        int left=0, right=height.length-1;
+        
+        while (left <right){
+            
+           if (height[left] <= height[right]){ // ensure left incoming element is less than right
+                if (height[left] >=leftmax){ // check if current left is maximum till now if YES - revise leftMax value
+                    leftmax = height[left];
+                } else res += leftmax -height[left];
+               left ++;
+           } else {
+               if (height[right] >=rightmax){
+                   rightmax = height[right];
+               } else res += rightmax - height[right];
+               right --;
+           }
+        }
+        return res;
     }
 }
