@@ -20,7 +20,7 @@ class Solution {
             rightmax[i] = Math.max(rightmax[i+1], height[i]);
         }
         
-        //total water
+        //total water - take minimum of both side and reduce current height
         int totalWater=0;
         for (int i =0;i<n;i++){
             totalWater += Math.min(leftmax[i], rightmax[i])- height[i];
