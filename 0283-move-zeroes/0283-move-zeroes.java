@@ -15,9 +15,8 @@ class Solution {
         while ( i < n  && j < n){
             // swap if j points to non zero element
             if (nums[j] !=0){
-                int temp = nums[i];
                 nums[i] = nums[j];
-                nums[j] = temp;
+                nums[j] = 0;
                 i++;
             }
             j++;
