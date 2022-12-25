@@ -9,18 +9,19 @@ class Solution {
         
         int maxLength = 0;
         
-        for (int i=0;i< nums.length;i++){
-            int prev = nums[i]-1;
-            int count =1;
-            // if and only if prev is not found so that we start withminimum value
-            if (!numSet.contains(prev)){
-                int next = nums[i]+1;
+        for (int num : nums){
+            // if only if prev is not found so that we start with minimum value
+            if (!numSet.contains(num-1)){
+                
+                int currNum=num;
+	            int currentStreak=1;
+                
                 // check until next numbers are found 
-                while (numSet.contains(next)){
-                    next++;
-                    count++;
+                while (numSet.contains(currNum+1)){
+                    currNum++;
+                    currentStreak++;
                 }
-                maxLength = Math.max(maxLength, count);
+                maxLength = Math.max(maxLength, currentStreak);
             }
         }
         return maxLength;
