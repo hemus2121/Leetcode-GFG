@@ -33,10 +33,8 @@ class Solution {
                         resList.add(quad);
                           
                          // Processing the duplicates of number 3
-                        //while (left < right && nums[left] == quad.get(2)) left++;
                          while (left < right && nums[left] == nums[left+1]) left++;
                          // Processing the duplicates of number 4
-                       // while (left < right && nums[right] == quad.get(3)) right--;
                         while (left < right && nums[right] == nums[right-1]) right--;
                         left++;
                         right--;
