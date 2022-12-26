@@ -9,12 +9,15 @@ class Solution {
         
         for (int i =0;i< len-3;i++){
             
-           long target3 = target - nums[i];
+            if (i>0 && nums[i]== nums[i-1]) continue;
+            
+            long target3 = target - nums[i];
             
             for (int j =i+1; j < len-2;j++){
                 
-                long target2 = target3-nums[j];
+                if (j>i+1 && nums[j] == nums[j-1])continue;
                 
+                long target2 = target3-nums[j];
                 int left = j+1;
                 int right = len-1;
                 
@@ -41,10 +44,10 @@ class Solution {
                     }
                 }
                    // Processing the duplicates of number 2
-                while(j + 1 < len && nums[j + 1] == nums[j]) ++j;
+                //while(j + 1 < len && nums[j + 1] == nums[j]) ++j;
             }
             // Processing the duplicates of number 1
-            while (i + 1 < len && nums[i + 1] == nums[i]) ++i;
+            //while (i + 1 < len && nums[i + 1] == nums[i]) ++i;
         }
         return resList;
         
