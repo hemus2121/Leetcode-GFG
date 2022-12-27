@@ -49,7 +49,7 @@ class Solution
             //sort based on 1st parameter
             Arrays.sort(Intervals, (a,b)-> (a[0]-b[0]));
             
-            //take reference 
+            //take reference as 1st referenc
             int start = Intervals[0][0];
             int end = Intervals[0][1];
             
@@ -58,13 +58,14 @@ class Solution
                 if (in[0] <= end){ // incoming interval start is less than curren end
                     end = Math.max(end,in[1]);
                 }else {
+                    // no overlapping to add to result and revise start, end values
                     resList.add (new int []{ start, end});
                     start = in[0];
                     end = in[1];
                 }
             }
             
-            resList.add(new int []{start,end});
-            return resList.toArray(new int[resList.size()][1]);
+            resList.add(new int []{start,end}); // add the last start and end values 
+            return resList.toArray(new int[resList.size()][]);
     }
 }
