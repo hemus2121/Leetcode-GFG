@@ -65,6 +65,6 @@ class Solution
             }
             
             resList.add(new int []{start,end});
-            return resList.toArray(new int[0][1]);
+            return resList.toArray(new int[resList.size()][1]);
     }
 }
