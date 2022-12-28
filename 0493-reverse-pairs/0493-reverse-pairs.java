@@ -5,15 +5,12 @@ class Solution {
     }
     
     int merge_Sort(int [] nums, int left, int right){
-          //if (left==right) return 0;
-        int invCount=0;
-        if (left < right){
+          if (left==right) return 0;
             int mid = (left+right)/2;
-            invCount += merge_Sort(nums, left, mid);
-            invCount += merge_Sort(nums, mid+1,right);
-            invCount += merge(nums, left, mid+1, right);
-        }
-        return (invCount)%mod;
+            int x = merge_Sort(nums, left, mid);
+            int y = merge_Sort(nums,mid+1,right);
+            int z = merge(nums, left, mid+1, right);
+            return (x+y+z)%mod;
     }
     
     int merge (int [] nums, int low, int mid, int right){
