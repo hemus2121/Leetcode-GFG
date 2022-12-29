@@ -60,6 +60,8 @@ class Solve {
     }
     
     int getFloor(int []arr, int n, int x){
+        if (x < arr[0]) return -1;
+        
         int start=0 ,end = n-1;
         while (start <= end){
             int mid = start + (end-start)/2;
@@ -67,12 +69,13 @@ class Solve {
             else if (arr[mid] < x) start = mid+1;
             else end = mid-1;
         }
-        return (end <0) ? -1: arr[end];
+        return arr[end];
     }
     
     int getCeil(int [] arr, int n, int x){
         
-        //if (x > arr[n-1]) return -1; //most critical step
+        if (x > arr[n-1]) return -1; //most critical step
+        
         int start=0, end = n-1;
         while (start <= end){
             int mid = start + (end-start)/2;
@@ -80,7 +83,7 @@ class Solve {
             else if (arr[mid]< x ) start = mid+1;
             else end = mid-1;
         }
-        return (start > n-1)? -1: arr[start];
+        return arr[start];
     }
         
 }
