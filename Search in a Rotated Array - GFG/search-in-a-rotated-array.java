@@ -35,13 +35,13 @@ public class GFG
 
 class Solution
 {
-    int search(int A[], int l, int h, int key)
+    int search(int A[], int low, int high, int key)
     {
         // l: The starting index
         // h: The ending index, you have to search the key in this range
         // Complete this function
-        int low = l;
-        int high = h;
+       // int low = l;
+        //int high = h;
         while (low <= high){
             int mid = (low + high)/2;
             if (A[mid]== key) return mid;
