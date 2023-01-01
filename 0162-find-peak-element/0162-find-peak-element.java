@@ -5,7 +5,7 @@ class Solution {
         if (nums[nums.length-1] >= nums[nums.length-2])  return nums.length-1;
         
         int low = 1;
-        int high = nums.length-2;
+        int high = nums.length-1;
         
         while (low <= high){
             int mid = (low + high)/2;
