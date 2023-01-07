@@ -45,7 +45,7 @@ class Solution {
         return solve(n,dp);
     }
 
-    static long bottomUp(int n) {
+   /* static long bottomUp(int n) {
         long [] dp = new long[n+1];
         //base case
         dp[0]= 0; dp[1]=1;
@@ -54,5 +54,20 @@ class Solution {
             dp[i] = (dp[i-1]+dp[i-2])%mod;
         }
         return dp[n];
+    }*/
+    
+    // Space Optimized code 
+    static long bottomUp(int n) {
+        long [] dp = new long[n+1];
+        //base case
+        //dp[0]= 0; dp[1]=1;
+        long prev2 =0, prev1=1, curr=0;
+        //express the states for the for loop
+        for(int i =2;i<=n;i++){
+           curr = (prev2+ prev1)%mod;
+           prev2= prev1;
+           prev1= curr;
+        }
+        return prev1%mod;
     }
 }
