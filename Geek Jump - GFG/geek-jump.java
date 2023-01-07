@@ -35,10 +35,13 @@ class Solution{
         //code here
         int [] dp = new int [N];
         Arrays.fill(dp, -1);
-        return getMinEner(arr, N-1 , dp);
+        //return getMinEnerTop(arr, N-1 , dp);
+        return getMinEnerBottom(arr, N , dp);
     }
     
-    int getMinEner(int [] arr, int N, int [] dp){
+    
+    // TopDown approach
+    /*int getMinEnerTop(int [] arr, int N, int [] dp){
         // base case
         if (N==0) return 0;
         if (dp[N] !=-1) return dp[N];
@@ -48,5 +51,17 @@ class Solution{
             jumpTwo = getMinEner(arr, N-2, dp) + Math.abs(arr[N]-arr[N-2]);
         }
         return dp[N] = Math.min(jumpOne, jumpTwo);
+    } */
+    
+    int getMinEnerBottom(int [] arr, int N, int [] dp){
+        dp[0] =0;
+        for(int ind=1;ind<N;ind++){
+            int jumpTwo = Integer.MAX_VALUE;
+            int jumpOne= dp[ind-1] + Math.abs(arr[ind]-arr[ind-1]);
+            if(ind>1)
+                jumpTwo = dp[ind-2] + Math.abs(arr[ind]-arr[ind-2]);
+            dp[ind]=Math.min(jumpOne, jumpTwo);
+        }
+        return dp[N-1];
     }
 }
