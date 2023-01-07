@@ -53,7 +53,8 @@ class Solution{
         return dp[N] = Math.min(jumpOne, jumpTwo);
     } */
     
-    int getMinEnerBottom(int [] arr, int N, int [] dp){
+    // Bottom up
+    /*int getMinEnerBottom(int [] arr, int N, int [] dp){
         dp[0] =0;
         for(int ind=1;ind<N;ind++){
             int jumpTwo = Integer.MAX_VALUE;
@@ -63,5 +64,21 @@ class Solution{
             dp[ind]=Math.min(jumpOne, jumpTwo);
         }
         return dp[N-1];
+    } */
+    
+    // Bottm up - Space optimized 
+    int getMinEnerBottom(int [] arr, int N, int [] dp){
+        int prev2 =0, prev1=0, curr=0;
+        
+        for(int ind=1;ind<N;ind++){
+            int jumpTwo = Integer.MAX_VALUE;
+            int jumpOne= prev1 + Math.abs(arr[ind]-arr[ind-1]);
+            if(ind>1)
+                jumpTwo = prev2 + Math.abs(arr[ind]-arr[ind-2]);
+            curr=Math.min(jumpOne, jumpTwo);
+            prev2 = prev1;
+            prev1 = curr;
+        }
+        return prev1;
     }
 }
