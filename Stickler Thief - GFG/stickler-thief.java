@@ -49,7 +49,7 @@ class Solution
         int prev = arr[start];
         int prev2=0;
         
-        for (int i = start+1;i < end;i++){
+        for (int i = 1;i <end;i++){
             int pick = arr[i];
             if (i >1){
                 pick += prev2;
