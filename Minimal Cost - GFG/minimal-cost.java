@@ -56,15 +56,16 @@ class Solution{
     int computeBottomUp(int [] arr, int N, int K, int [] dp){
         dp[0] = 0;
         
-        for (int i=1;i< N;i++){
+        for (int ind=1;ind< N;ind++){
              int mmSteps = Integer.MAX_VALUE;
+             
               for(int j=1;j<=K;j++){
-                  if (i-j>=0){
-                      int jump = dp[i-j]+ Math.abs(arr[i]-arr[i-j]);
+                  if (ind-j>=0){
+                      int jump = dp[ind-j]+ Math.abs(arr[ind]-arr[ind-j]);
                       mmSteps = Math.min(mmSteps, jump);
                   }
               }
-              dp[i]= mmSteps;
+              dp[ind]= mmSteps;
         }
         return dp[N-1];
     }
