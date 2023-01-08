@@ -35,7 +35,8 @@ class Solution {
         // code here
         int dp[]=new int[n];
         Arrays.fill(dp,-1);
-        return computeTopDown(arr,n-1,dp);
+        //return computeTopDown(arr,n-1,dp);
+        return computeBottomUp(arr,n, dp);
     }
     
     int computeTopDown(int [] arr, int ind, int [] dp){
@@ -50,6 +51,19 @@ class Solution {
         int pick = arr[ind] + computeTopDown(arr, ind-2, dp);
         int notPick = computeTopDown(arr, ind-1, dp);
         return dp[ind]=Math.max(pick, notPick);
+    }
+    
+    int computeBottomUp(int [] arr, int n , int []dp){
+        dp[0]= arr[0];
+        for (int ind=1; ind<n;ind++){
+            int Pick = arr[ind];
+            if (ind >1){
+                Pick += dp[ind-2];
+            }
+            int nonPick = 0 + dp[ind-1];
+            dp[ind] = Math.max(Pick, nonPick);
+        }
+        return dp[n-1];
     }
     
 }
