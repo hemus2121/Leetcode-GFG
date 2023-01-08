@@ -33,7 +33,8 @@ class Solution{
         //code here
         int [] dp = new int [N];
         Arrays.fill(dp,-1);
-        return computeTopDown(arr, N-1, K, dp);
+        //return computeTopDown(arr, N-1, K, dp);
+        return computeBottomUp(arr, N, K, dp);
     }
     
     int computeTopDown(int [] arr, int ind, int K, int []dp){
@@ -50,5 +51,21 @@ class Solution{
           }
         }
         return dp[ind]=mmSteps;
+    }
+    
+    int computeBottomUp(int [] arr, int N, int K, int [] dp){
+        dp[0] = 0;
+        
+        for (int i=1;i< N;i++){
+             int mmSteps = Integer.MAX_VALUE;
+              for(int j=1;j<=K;j++){
+                  if (i-j>=0){
+                      int jump = dp[i-j]+ Math.abs(arr[i]-arr[i-j]);
+                      mmSteps = Math.min(mmSteps, jump);
+                  }
+              }
+              dp[i]= mmSteps;
+        }
+        return dp[N-1];
     }
 }
