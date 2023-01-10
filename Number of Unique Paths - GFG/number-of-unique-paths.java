@@ -40,7 +40,8 @@ class Solution
         for(int [] row : dp){
             Arrays.fill(row, -1);
         }
-        return computeTopDown(a-1, b-1, dp);
+       // return computeTopDown(a-1, b-1, dp);
+       return computeBottmUp(a, b, dp);
     }
     
     static int computeTopDown(int i, int j, int [][]dp){
@@ -52,5 +53,27 @@ class Solution
         int up = computeTopDown(i-1, j, dp);
         int left = computeTopDown(i, j-1, dp);
         return dp[i][j] = up + left;
+    }
+    
+    static int computeBottmUp(int m, int n, int [][]dp){
+        
+        for (int i =0;i< m;i++){
+            for (int j =0;j<n;j++){
+                // filling 1st cell of left most
+                if (i==0 &&j==0){
+                    dp[i][j]=1;
+                    continue;
+                }
+                int up=0;
+                int left=0;
+                if ( i >0)
+                    up = dp[i-1][j];
+                if (j >0)
+                  left = dp[i][j-1];
+               
+                dp[i][j] = left+up;
+            }
+        }
+        return dp[m-1][n-1];
     }
 }
