@@ -41,9 +41,11 @@ class Solution
             Arrays.fill(row, -1);
         }
        // return computeTopDown(a-1, b-1, dp);
-       return computeBottmUp(a, b, dp);
+      // return computeBottmUp(a, b, dp);
+      return computeBottmUpOpt(a, b);
     }
     
+    //Top Down
     static int computeTopDown(int i, int j, int [][]dp){
         if (i==0 && j==0) return 1;
         if ( i<0 || j <0) return 0;
@@ -55,8 +57,8 @@ class Solution
         return dp[i][j] = up + left;
     }
     
+    //Bottom up
     static int computeBottmUp(int m, int n, int [][]dp){
-        
         for (int i =0;i< m;i++){
             for (int j =0;j<n;j++){
                 // filling 1st cell of left most
@@ -64,16 +66,36 @@ class Solution
                     dp[i][j]=1;
                     continue;
                 }
-                int up=0;
-                int left=0;
-                if ( i >0)
-                    up = dp[i-1][j];
-                if (j >0)
-                  left = dp[i][j-1];
+                int up=0, left=0;
+                if ( i>0) up = dp[i-1][j];
+                if (j >0) left = dp[i][j-1];
                
                 dp[i][j] = left+up;
             }
         }
         return dp[m-1][n-1];
+    }
+    
+     //Bottom up - Optimized
+    static int computeBottmUpOpt(int m, int n){
+        int prev[]=new int[n]; // previous row
+        
+        for (int i =0;i< m;i++){
+            int temp[]=new int[n];
+            for (int j =0;j<n;j++){
+                // filling 1st cell of left most
+                if (i==0 &&j==0){
+                    temp[j]=1;
+                    continue;
+                }
+                int up=0, left=0;
+                if (i>0) up = prev[j]; // previous row
+                if (j >0) left = temp[j-1]; // current row previous column
+               
+                temp[j] = up + left;
+            }
+            prev = temp;
+        }
+        return prev[n-1];
     }
 }
