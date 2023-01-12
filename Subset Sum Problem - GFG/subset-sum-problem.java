@@ -44,7 +44,8 @@ class Solution{
             Arrays.fill(row, -1);
         }
        // return computeTopDown(N-1, arr, sum, dp);
-       return computeBottomUP(N, arr, sum);
+      // return computeBottomUP(N, arr, sum);
+       return computeBottomSpace(N, arr, sum);
     }
     
     static boolean computeTopDown(int N, int arr[], int target, int [][]dp){
@@ -93,5 +94,29 @@ class Solution{
             }
         }
         return dp[N-1][target];
+    }
+    
+    static boolean computeBottomSpace(int N, int arr[], int target){
+        
+       boolean [] prev = new boolean [target+1];
+        prev[0] = true;
+        
+        if (arr[0] <= target)
+            prev[arr[0]]= true;
+            
+        for (int ind=1;ind<N;ind++){
+            boolean [] cur = new boolean[target+1];
+            cur[0] = true;
+            for (int tg=1;tg <=target; tg++){
+                  boolean notpick = prev[tg];
+                  boolean pick =false;
+                  if (arr[ind] <=tg){
+                      pick = prev[tg-arr[ind]];
+                  }
+                  cur[tg] = pick ||notpick;
+            }
+            prev= cur;
+        }
+        return prev[target];
     }
 }
