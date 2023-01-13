@@ -56,7 +56,8 @@ class Solution
          for (int [] row : dp){
              Arrays.fill(row, -1);
          }
-         return computeTopDown(W,wt, val, n-1, dp);
+         //return computeTopDown(W,wt, val, n-1, dp);
+         return computeBottomUp(W,wt, val, n, dp);
     } 
     
     static int computeTopDown(int W, int [] wt, int [] val, int n, int [][]dp){
@@ -75,7 +76,31 @@ class Solution
             taken = val[n] + computeTopDown(W-wt[n], wt, val, n-1, dp);
         }
         return dp[n][W] = Math.max(notTaken, taken);
+    }
+    
+    static int computeBottomUp(int W, int [] wt, int [] val, int n, int [][]dp){
         
+         for (int [] row : dp){
+             Arrays.fill(row, 0);
+         }
+        //fill 1st row 
+        for (int i = wt[0];i<=W;i++){
+            dp[0][i] = val[0];
+        }
+        
+        //iterate other 
+        for (int ind =1;ind<n;ind++){
+            for (int cap=0;cap<=W;cap++){
+                int notTaken = 0 + dp[ind-1][cap];
+                
+                int taken = Integer.MIN_VALUE;
+                if (wt[ind]<=cap){
+                    taken = val[ind] + dp[ind-1][cap-wt[ind]];
+                }
+                dp[ind][cap]= Math.max(notTaken, taken);
+            }
+        }
+        return dp[n-1][W];
     }
 }
 
