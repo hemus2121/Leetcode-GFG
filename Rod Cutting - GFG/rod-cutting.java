@@ -28,7 +28,8 @@ class Solution{
          for (int [] row: dp){
              Arrays.fill(row, -1);
          }
-         return computeTopdown(price, n-1, n, dp);
+        // return computeTopdown(price, n-1, n, dp);
+        return computeBottomUp(price, n);
     }
     
     int computeTopdown(int [] price, int ind, int N, int [][] dp){
@@ -46,5 +47,29 @@ class Solution{
             take = price[ind] + computeTopdown(price, ind, N-rodLength, dp);
         
         return dp[ind][N] = Math.max(take, notTake);
+    }
+    
+    int computeBottomUp(int [] price, int N){
+        int dp[][]=new int[N][N+1];
+
+    
+        for(int i=0; i<=N; i++){
+            dp[0][i] = i*price[0];
+        }
+    
+        for(int ind=1; ind<N; ind++){
+            for(int length =0; length<=N; length++){
+                
+             int notTaken = 0 + dp[ind-1][length];
+    
+             int taken = Integer.MIN_VALUE;
+             int rodLength = ind+1;
+             if(rodLength <= length)
+                taken = price[ind] + dp[ind][length-rodLength];
+        
+             dp[ind][length] = Math.max(notTaken,taken);   
+            }
+        }
+        return dp[N-1][N];
     }
 }
