@@ -31,10 +31,10 @@ class GFG {
 }
 // } Driver Code Ends
 
-class Node{
+class Pair{
     int cur;
     int par;
-    Node (int cur, int par){
+    Pair (int cur, int par){
         this.cur = cur;
         this.par = par;
     }
@@ -57,20 +57,20 @@ class Solution {
         return false;
     }
     
-    boolean bfsCycle(int node,  ArrayList<ArrayList<Integer>> adj, boolean[] vis ){
-        Queue<Node> q = new LinkedList<>();
-        q.add(new Node(node,-1));
-        vis[node]=true;
+    boolean bfsCycle(int node,  ArrayList<ArrayList<Integer>> adj, boolean[] vis){
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(node,-1)); //starting node 
+        vis[node]=true; //making current node as visited
         
         while (!q.isEmpty()){
-            Node temp = q.poll();
+            Pair temp = q.poll();
             int curr = temp.cur;
             int par = temp.par;
             
             for (int neigh : adj.get(curr)){
                 if (vis[neigh] == false){
                     vis[neigh]= true;
-                    q.add(new Node(neigh, curr));
+                    q.add(new Pair(neigh, curr));
                 }else if (neigh != par){
                     return true;
                 }
