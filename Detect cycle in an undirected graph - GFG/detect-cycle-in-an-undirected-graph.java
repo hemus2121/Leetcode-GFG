@@ -31,53 +31,40 @@ class GFG {
 }
 // } Driver Code Ends
 
-class Pair{
-    int cur;
-    int par;
-    Pair (int cur, int par){
-        this.cur = cur;
-        this.par = par;
-    }
-}
+
 class Solution {
-    
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-         boolean visited[] = new boolean[V];
-          
-        // we need to travers for all components
-        for (int i =0;i<V;i++){
-            if (visited[i]== false){
-                if (bfsCycle(i, adj, visited)==true){
-                    return true;
-                }
+        int [] visited =new int [V];
+        for (int i=0;i< V;i++){
+            if(visited[i] == 0) {
+                if (dfs(adj, i,-1, visited)== true) return true;
             }
         }
         return false;
     }
     
-    boolean bfsCycle(int node,  ArrayList<ArrayList<Integer>> adj, boolean[] vis){
-        Queue<Pair> q = new LinkedList<>();
-        q.add(new Pair(node,-1)); //starting node 
-        vis[node]=true; //making current node as visited
-        
-        while (!q.isEmpty()){
-            Pair temp = q.poll();
-            int curr = temp.cur;
-            int par = temp.par;
-            
-            for (int neigh : adj.get(curr)){
-                if (vis[neigh] == false){
-                    vis[neigh]= true;
-                    q.add(new Pair(neigh, curr));
-                }else if (neigh != par){
+    boolean dfs(ArrayList<ArrayList<Integer>> adj, int node, int parent, int []vis){
+        vis[node]= 1;
+        //visit adj element
+        for (int neighbour : adj.get(node)){
+            if (vis[neighbour]== 0){
+                if (dfs(adj, neighbour, node, vis)==true) 
                     return true;
-                }
-            }
+            }else if (neighbour != parent) return true;
         }
         return false;
+        /*vis[node] = 1; 
+        // go to all adjacent nodes
+        for(int adjacentNode: adj.get(node)) {
+            if(vis[adjacentNode]==0) {
+                if(dfs(adj,  adjacentNode, node, vis) == true) 
+                    return true; 
+            }
+            // if adjacent node is visited and is not its own parent node
+            else if(adjacentNode != parent) return true; 
+        }
+        return false; */
     }
-    
-    
 }
