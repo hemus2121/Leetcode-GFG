@@ -27,7 +27,6 @@ class Solution {
                     q.offer(new Node(i,j, 1));
                     visited [i][j]=1;
                 }
-                //else visited[i][j]=1;
             }
         }
         int delrow[] = {-1, 0, +1, 0}; 
