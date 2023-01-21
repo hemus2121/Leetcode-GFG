@@ -24,7 +24,7 @@ class Solution {
         for (int i =0;i< n;i++){
             for (int j =0;j<m;j++){
                 if (mat[i][j]==0){
-                    q.offer(new Node(i,j, 1));
+                    q.offer(new Node(i,j, 0));
                     visited [i][j]=1;
                 }
             }
@@ -38,7 +38,7 @@ class Solution {
             int x = temp.first;
             int y = temp.second;
             int dis = temp.dist;
-            dist[x][y] = dis-1;
+            dist[x][y] = dis;
             
             for(int i = 0;i<4;i++) {
                 int dx = x + delrow[i];
