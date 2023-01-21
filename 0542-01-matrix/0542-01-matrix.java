@@ -25,9 +25,9 @@ class Solution {
             for (int j =0;j<m;j++){
                 if (mat[i][j]==0){
                     q.offer(new Node(i,j, 1));
-                    visited [i][j]=0;
+                    visited [i][j]=1;
                 }
-                else visited[i][j]=1;
+                //else visited[i][j]=1;
             }
         }
         int delrow[] = {-1, 0, +1, 0}; 
@@ -44,8 +44,8 @@ class Solution {
             for(int i = 0;i<4;i++) {
                 int dx = x + delrow[i];
                 int dy =  y + delcol[i];
-                while (dx >=0 && dx <n && dy >=0 && dy <m && visited[dx][dy]==1){
-                    visited[dx][dy]=0;
+                while (dx >=0 && dx <n && dy >=0 && dy <m && visited[dx][dy]==0){
+                    visited[dx][dy]=1;
                     q.add(new Node(dx, dy, dis+1));
                 }
             }
