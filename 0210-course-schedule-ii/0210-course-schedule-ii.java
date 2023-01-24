@@ -22,9 +22,10 @@ class Solution {
             adjList.add(new ArrayList<>());
         
        
-        for(int i=0; i<prerequisites.length; i++){
-            adjList.get(prerequisites[i][1]).add(prerequisites[i][0]);
-            indegree[prerequisites[i][0]]++;
+        //for(int i=0; i<prerequisites.length; i++){
+        for (int [] pre:prerequisites ){
+            adjList.get(pre[1]).add(pre[0]);
+            indegree[pre[0]]++;
         }
     }
     
