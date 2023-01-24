@@ -8,8 +8,9 @@ class Solution {
         // we need array to hold INDEGREE count for each node init with MAX value
         int [] indegree = new int [numCourses];
         buildGraph(numCourses, prerequisites, adjList, indegree);
+        List<Integer> resultList = new ArrayList<>();
 
-/*        List<Integer> resultList = new ArrayList<>();
+/*    
         topoSortData(numCourses, indegree,adjList, resultList);
         
         
@@ -23,7 +24,7 @@ class Solution {
         */
        
         
-        Queue<Integer> que = new ArrayDeque<>();
+       /* Queue<Integer> que = new ArrayDeque<>();
         for(int i=0; i<indegree.length; i++) if(indegree[i] == 0) que.add(i);
         int[] ans = new int[numCourses];
         int idx=0;
@@ -36,9 +37,11 @@ class Solution {
                 indegree[ele]--;
                 if(indegree[ele] == 0) que.add(ele);
             }
-        }
-        if(idx!=numCourses) return new int[0];
-        else return ans;
+        } */
+        topoSortData(numCourses, indegree, adjList, resultList);
+        if(resultList.size() !=numCourses) return new int[0];
+        else 
+            return resultList.stream().mapToInt(val -> val).toArray();
     }
     
     void buildGraph(int numCourses, int[][] prerequisites, List<List<Integer>> adjList, int []indegree){
@@ -53,21 +56,8 @@ class Solution {
         }
     }
     
-   /* void buildGraph(int n, int [][]pre,List<List<Integer>> adjList, int[] indeg ){
-        
-        List<List<Integer>> graph = new ArrayList<>();
-        for(int i=0; i<n; i++) 
-            graph.add(new ArrayList<>());
-        
-        
-        int[] indegree = new int[n];
-        for(int i=0; i<pre.length; i++){
-            graph.get(pre[i][1]).add(pre[i][0]);
-            indegree[pre[i][0]]++;
-        }
-    } */
     
-    /* void topoSortData(int n, int[] indegree, List<List<Integer>> adjList,List<Integer> resList){
+     void topoSortData(int n, int[] indegree, List<List<Integer>> adjList,List<Integer> resList){
         
          Queue<Integer> que = new LinkedList<>();
         for(int i=0; i<indegree.length; i++) {
@@ -87,6 +77,6 @@ class Solution {
                     que.add(ele);
             }
         }
-    } */
+    } 
     
 }
