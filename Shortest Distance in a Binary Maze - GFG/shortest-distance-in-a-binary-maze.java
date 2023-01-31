@@ -90,8 +90,8 @@ class Solution {
                 if (nr >=0 && nr < n && nc >= 0 && nc <m  && grid [nr][nc]==1 
                 &&  1 + dis < dist[nr][nc]  ){
                     dist[nr][nc]= 1 + dis;
-                    if ( nr == destination[0] && nc == destination[1]) return dis+1;
-                    q.add( new tuple(1 + dis, nr, nc));
+                    if ( nr == destination[0] && nc == destination[1]) return dist[nr][nc];
+                    q.add( new tuple(dist[nr][nc], nr, nc));
                 }
             }
         }
