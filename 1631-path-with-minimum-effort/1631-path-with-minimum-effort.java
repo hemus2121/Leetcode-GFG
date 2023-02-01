@@ -28,13 +28,13 @@ class Solution {
         
         while (pq.size() != 0){
             tuple tp = pq.poll();
-            int diff = tp.dist;
+            int currDis = tp.dist;
             int row = tp.x;
             int col = tp.y;
             
             // Check if we have reached the destination cell,
             // return the current value of difference (which will be min).
-             if(row == n-1 && col == m-1) return diff; 
+             if(row == n-1 && col == m-1) return currDis; 
             
             for (int i =0;i< 4;i++){
                 int newr = row + dx[i];
@@ -45,16 +45,16 @@ class Solution {
                     
                     // Effort can be calculated as the max value of differences 
                     // between the heights of the node and its adjacent nodes.
-                    int newEffort = 
+                    int newDist = 
                     Math.max(
-                        Math.abs(heights[row][col] - heights[newr][newc]), diff); 
+                        Math.abs(heights[row][col] - heights[newr][newc]), currDis); 
                     
                     //System.out.println("newEffort"+newEffort);
                     // If the calculated effort is less than the prev value
                     // we update as we need the min effort.
-                    if(newEffort < dist[newr][newc]) {
-                        dist[newr][newc] = newEffort; 
-                        pq.add(new tuple(newEffort, newr, newc)); 
+                    if(newDist < dist[newr][newc]) {
+                        dist[newr][newc] = newDist; 
+                        pq.add(new tuple(newDist, newr, newc)); 
                     }
                 }
             }
