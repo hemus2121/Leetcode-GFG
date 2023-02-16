@@ -7,22 +7,20 @@ class Solution {
         //int maxValue = Math.max (nums[0], nums[1]);
         //if (n==2) return maxValue;
         Arrays.fill(dp, -1);
-        //return compute(nums,n, dp, n-1); 
-        return computeIter(n, nums, dp);
+        return compute(n-1, nums, dp); 
+        //return computeIter(n, nums, dp);
     }
     
-   /* int compute (int [] nums, int n, int [] dp, int start){
-        
-        //base cases
-        if (start == 0) return Math.max(0, nums[0]);
-        if (start == 1) return Math.max(nums[0],nums[1]);
-        
-        if (dp[start] != -1) return dp[start];
-        
-        int ans =  Math.max(nums[start]+ compute(nums,n, dp,start-2),
-                          compute(nums,n, dp,start-1)) ;
-        return dp[start] = ans;
-    } */
+    
+    int compute (int ind, int[] arr, int[] dp){
+        if(ind<0)  return 0;
+        if(ind==0) return arr[ind];
+        if(dp[ind]!=-1) return dp[ind];
+        int pick= arr[ind]+ compute(ind-2, arr,dp);
+        int nonPick = 0 + compute(ind-1, arr, dp);
+    
+        return dp[ind]=Math.max(pick, nonPick);
+    } 
     
     //Iterative approach
     public int computeIter(int n, int[] nums, int [] dp) {
