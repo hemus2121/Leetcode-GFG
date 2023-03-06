@@ -84,11 +84,9 @@ class Solution {
                for (int ind =0;ind< 4;ind++) {
                      int newr = row + dr[ind];
                      int newc = col + dc[ind];
-                     if (isValid(newr, newc, n)) {
-                        if (grid[newr][newc] == 1) {
+                     if (isValid(newr, newc, n) && grid[newr][newc] == 1) {
                             uniqueParents.add(ds.findUPar(newr * n + newc));
                         }
-                    }
               }
              int totalSize =0;
              for (Integer parents: uniqueParents){
